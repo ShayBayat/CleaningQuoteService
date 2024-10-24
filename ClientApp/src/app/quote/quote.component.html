@@ -1,0 +1,33 @@
+<!-- quote.component.html -->
+<h2>Get a Quote</h2>
+
+<!-- City selection dropdown -->
+<label for="city">Select City:</label>
+<select id="city" [(ngModel)]="selectedCity" (change)="onCityChange()">
+  <option value="Stockholm">Stockholm</option>
+  <option value="Uppsala">Uppsala</option>
+</select>
+
+<!-- Area input field -->
+<label for="area">Enter Area (m²):</label>
+<input type="number" id="area" [(ngModel)]="area" />
+
+<div>
+  <h3>Add-Ons:</h3>
+  <!-- Checkbox inputs for add-ons -->
+  <input type="checkbox" [(ngModel)]="addOns.windowCleaning" /> Window Cleaning
+  <input type="checkbox" [(ngModel)]="addOns.balconyCleaning" /> Balcony Cleaning
+  <input type="checkbox" [(ngModel)]="addOns.junkRemoval" /> Junk Removal
+</div>
+
+<!-- Button to calculate the quote -->
+<button (click)="calculateQuote()">Get Quote</button>
+
+<div>
+  <h3>Quote Summary:</h3>
+  <!-- Display area and city if they are selected -->
+  <p *ngIf="area">Area: {{ area }} m²</p>
+  <p *ngIf="selectedCity">City: {{ selectedCity }}</p>
+  <!-- Display total quote if calculated -->
+  <p *ngIf="quote !== null">Total Quote: {{ quote }} SEK</p>
+</div>
